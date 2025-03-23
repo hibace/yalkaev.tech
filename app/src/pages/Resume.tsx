@@ -5,98 +5,98 @@ import { Chip, Avatar } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Telegram, Mail } from '@mui/icons-material';
 
-// Данные experiences (без изменений)
+// Данные experiences с ключами для переводов
 const experiences = [
   {
-    period: 'Январь 2025 — Март 2025',
-    duration: '3 месяца',
-    company: 'ООО «Карьерный компас»',
-    location: 'Набережные Челны, tams-cc.ru',
-    position: 'Ведущий разработчик',
+    periodKey: 'experience.careerCompass.period',
+    durationKey: 'experience.careerCompass.duration',
+    companyKey: 'experience.careerCompass.company',
+    locationKey: 'experience.careerCompass.location',
+    positionKey: 'experience.careerCompass.position',
     stack: [
       '.NET 9', 'Entity Framework Core 9', 'Redis', 'FluentValidation', 'MediatR', 'Apache Pulsar',
       'Automapper', 'Polly', 'Swagger', 'KubernetesClient', 'Quartz', 'React', 'Typescript', 'Vite',
       'PrimeReact', 'Redux', 'MUI', 'Tailwind', 'axios', 'i18n', 'vitest', 'Yandex Cloud', 'Docker',
       'Kubernetes', 'GitLab', 'Sonarube', 'Grafana', 'Prometheus', 'AlertManager'
     ],
-    responsibilities: [
-      'Участие в проектировании и разработке backend-части приложений на .NET',
-      'Разработка front-end компонентов на базе React с использованием современных подходов управления состоянием (Redux)',
-      'Обеспечение взаимодействия компонентов и сервисов с использованием очередей сообщений для масштабируемых архитектур',
-      'Проектирование и оптимизация баз данных, написание и оптимизация сложных SQL-запросов',
-      'Настройка и поддержка CI/CD для автоматизации выпуска обновлений и высоких стандартов кода',
-      'Взаимодействие с командой разработчиков, аналитиками и менеджерами для реализации требований и оптимизации бизнес-логики',
-      'Поддержка тестирования кода, создание Unit и Integration тестов для обеспечения стабильности решения',
-      'Менторство и поддержка других разработчиков в команде, помощь в решении технических задач и обучение стандартам и лучшим практикам разработки',
-      'Участие в планировании и оценке задач, анализ существующих процессов разработки и предложение улучшений',
+    responsibilitiesKeys: [
+      'experience.careerCompass.responsibilities.1',
+      'experience.careerCompass.responsibilities.2',
+      'experience.careerCompass.responsibilities.3',
+      'experience.careerCompass.responsibilities.4',
+      'experience.careerCompass.responsibilities.5',
+      'experience.careerCompass.responsibilities.6',
+      'experience.careerCompass.responsibilities.7',
+      'experience.careerCompass.responsibilities.8',
+      'experience.careerCompass.responsibilities.9',
     ],
   },
   {
-    period: 'Октябрь 2020 — Июль 2024',
-    duration: '3 года 10 месяцев',
-    company: 'Qvant (Avant)',
-    location: 'qvant.com',
-    position: 'Senior Full Stack Developer',
+    periodKey: 'experience.qvant.period',
+    durationKey: 'experience.qvant.duration',
+    companyKey: 'experience.qvant.company',
+    locationKey: 'experience.qvant.location',
+    positionKey: 'experience.qvant.position',
     stack: [
       '.NET 8', '.NET 5', '.NET Framework', 'MS SQL Server', 'PostgreSQL', 'Vue.js', 'Quasar', 'PrimeVue',
       'Axios', 'Pinia', 'Typescript', 'Javascript', 'jQuery', 'MediatR', 'Dapper', 'Team City', 'Octopus',
       'ELK', 'Agile', 'Scrum'
     ],
-    highlights: [
-      'Лидил команду разработчиков для 5 сложных продуктов с итерационной успешной поставкой продукта в прод',
-      'Проектировал и разрабатывал модуль «База оборудования» на технологическом стеке .NET 8, Vue 3, PrimeVue, Pinia, minIO',
-      'Разработал модуль «Общий и ролевой доступ», интегрированный в продукт',
-      'Формировал и поддерживал архитектурный стиль для модулей продукта',
-      'Организовал работу команды разработчиков посредством встреч, обсуждений и написания внутренних статей',
+    highlightsKeys: [
+      'experience.qvant.highlights.1',
+      'experience.qvant.highlights.2',
+      'experience.qvant.highlights.3',
+      'experience.qvant.highlights.4',
+      'experience.qvant.highlights.5',
     ],
-    responsibilities: [
-      'Разрабатывал модули Dynamics CRM (XRM SDK плагины, БП, скриптовая логика js, ts)',
-      'Формировал и проектировал микросервисную архитектуру для WebAPI (Ocelot API Gateway), CQRS паттерн (MediatR), micro ORM Dapper',
-      'Реализовывал бизнес-логику, используя Hangfire background process, писал Quartz задачи',
-      'Писал и оптимизировал SQL-запросы (MS SQL Server, PostgreSQL)',
-      'Разрабатывал UI компоненты SPA приложения (Vue 2/3, TS, JS, Quasar Framework)',
-      'Реализовывал интеграции с продуктами периметра компании через RabbitMQ, REST + SOAP',
-      'Техническое управление проектами, работа с техническим долгом',
-      'Наставничество и обучение команды разработчиков',
-      'Ответственность за качество кода, code review, рефакторинг',
+    responsibilitiesKeys: [
+      'experience.qvant.responsibilities.1',
+      'experience.qvant.responsibilities.2',
+      'experience.qvant.responsibilities.3',
+      'experience.qvant.responsibilities.4',
+      'experience.qvant.responsibilities.5',
+      'experience.qvant.responsibilities.6',
+      'experience.qvant.responsibilities.7',
+      'experience.qvant.responsibilities.8',
+      'experience.qvant.responsibilities.9',
     ],
   },
   {
-    period: 'Сентябрь 2020 — Сентябрь 2021',
-    duration: '1 год 1 месяц',
-    company: 'Outsource projects (Navicon, VTB Leasing, Yolva)',
-    location: 'Санкт-Петербург',
-    position: 'Fullstack Developer',
+    periodKey: 'experience.outsource.period',
+    durationKey: 'experience.outsource.duration',
+    companyKey: 'experience.outsource.company',
+    locationKey: 'experience.outsource.location',
+    positionKey: 'experience.outsource.position',
     stack: ['React', 'Semantic UI', 'RabbitMQ', 'Javascript', '.NET', 'Dynamics 365', 'Terrasoft SDK'],
-    responsibilities: [
-      'Разработан модуль «Разделение возможностей» для ВТБ Лизинг на React, Semantic UI stack',
-      'Разработан модуль «Передача возможностей» с использованием RabbitMQ',
-      'Разработаны клиентские страницы модуля Dynamics 365 Portal (Javascript, .NET)',
-      'Оптимизировано время выполнения плагина (x10) для Yolva',
-      'Создан модуль «График встреч» для Dynamics CRM (Javascript, HTML, CSS)',
-      'Разработан модуль дедупликации учетных записей для Creatio (Javascript, .NET)',
-      'Созданы UI и Unit тесты для разработанной функциональности',
+    responsibilitiesKeys: [
+      'experience.outsource.responsibilities.1',
+      'experience.outsource.responsibilities.2',
+      'experience.outsource.responsibilities.3',
+      'experience.outsource.responsibilities.4',
+      'experience.outsource.responsibilities.5',
+      'experience.outsource.responsibilities.6',
+      'experience.outsource.responsibilities.7',
     ],
   },
   {
-    period: 'Июль 2018 — Октябрь 2020',
-    duration: '2 года 4 месяца',
-    company: 'Navicon',
-    location: 'Республика Татарстан, navicons.com',
-    position: 'Fullstack Developer',
+    periodKey: 'experience.navicon.period',
+    durationKey: 'experience.navicon.duration',
+    companyKey: 'experience.navicon.company',
+    locationKey: 'experience.navicon.location',
+    positionKey: 'experience.navicon.position',
     stack: ['C#', 'ASP.NET', 'Entity Framework', 'MVC/WebAPI', 'Javascript', 'jsTree', 'jsBridge (Resco)', 'SQL', 'SSRS'],
-    responsibilities: [
-      'Реализовали иерархическую страницу подрядчиков с использованием jsTree',
-      'Разработали страницу записи пациентов с Angular Scheduler',
-      'Разработали быструю синхронизацию (x10) для Resco CRM',
-      'Разработка для MS Dynamics CRM',
-      'Разработка клиент-серверных приложений',
-      'Разработка отчетов SSRS',
-      'Поддержка устаревшего кода',
-      'Создание скриптов форм CRM для проектов (Stihl, Sanofi, Alfacapital, OMC, Petrovax)',
-      'Разработка плагинов и рабочих процессов для CRM (Promomed, OMC, Valeant, HSE, VTB Leasing)',
-      'Разработка интеграции OMC-MDM',
-      'Разработка скриптов для Mobile RESCO CRM (RPHARM, Petrovax, Novamedica, Promomed, Tooltech)',
+    responsibilitiesKeys: [
+      'experience.navicon.responsibilities.1',
+      'experience.navicon.responsibilities.2',
+      'experience.navicon.responsibilities.3',
+      'experience.navicon.responsibilities.4',
+      'experience.navicon.responsibilities.5',
+      'experience.navicon.responsibilities.6',
+      'experience.navicon.responsibilities.7',
+      'experience.navicon.responsibilities.8',
+      'experience.navicon.responsibilities.9',
+      'experience.navicon.responsibilities.10',
+      'experience.navicon.responsibilities.11',
     ],
   },
 ];
@@ -108,10 +108,10 @@ const skills = [
 
 export default function Resume() {
   const { t } = useTranslation();
-  const [openCard, setOpenCard] = useState<number | null>(null); // Состояние для открытой карточки
+  const [openCard, setOpenCard] = useState<number | null>(null);
 
   const toggleCard = (index: number) => {
-    setOpenCard(openCard === index ? null : index); // Открываем/закрываем карточку
+    setOpenCard(openCard === index ? null : index);
   };
 
   return (
@@ -186,13 +186,13 @@ export default function Resume() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                {/* Заголовок карточки (всегда виден) */}
+                {/* Заголовок карточки */}
                 <div className="p-4 flex flex-col md:flex-row justify-between items-start">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{exp.position}</h3>
-                    <p className="text-secondary dark:text-secondary-dark text-sm">{exp.company} — {exp.location}</p>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{t(exp.positionKey)}</h3>
+                    <p className="text-secondary dark:text-secondary-dark text-sm">{t(exp.companyKey)} — {t(exp.locationKey)}</p>
                   </div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400 mt-1 md:mt-0">{exp.period} ({exp.duration})</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-400 mt-1 md:mt-0">{t(exp.periodKey)} ({t(exp.durationKey)})</span>
                 </div>
 
                 {/* Раскрываемая часть */}
@@ -218,12 +218,12 @@ export default function Resume() {
                           ))}
                         </div>
                       </div>
-                      {exp.highlights && (
+                      {exp.highlightsKeys && (
                         <div className="mt-4">
                           <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('highlights')}:</h4>
                           <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm mt-1">
-                            {exp.highlights.map((highlight, i) => (
-                              <li key={i}>{highlight}</li>
+                            {exp.highlightsKeys.map((key) => (
+                              <li key={key}>{t(key)}</li>
                             ))}
                           </ul>
                         </div>
@@ -231,8 +231,8 @@ export default function Resume() {
                       <div className="mt-4">
                         <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('responsibilities')}:</h4>
                         <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm mt-1">
-                          {exp.responsibilities.map((resp, i) => (
-                            <li key={i}>{resp}</li>
+                          {exp.responsibilitiesKeys.map((key) => (
+                            <li key={key}>{t(key)}</li>
                           ))}
                         </ul>
                       </div>

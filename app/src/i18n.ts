@@ -1,45 +1,22 @@
 // src/i18n.ts
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-
-const resources = {
-  ru: {
-    translation: {
-      name: 'Николай Ялкаев',
-      description: 'Ведущий Fullstack разработчик с более чем 6 годами коммерческого опыта в разработке программного обеспечения, охватывающего весь жизненный цикл реализации продукта — от проектирования архитектуры до продакшн-развертывания. Специализируюсь на создании масштабируемых веб-приложений с использованием современных стеков технологий. В поиске компании с релевантным стеком (.NET, React, Vue, микросервисы) и интересными задачами, где смогу применять свой опыт для решения сложных бизнес-задач и менторства команд.',
-      contact: 'Связь:',
-      telegram: '@yalkaev (Telegram)',
-      about: 'Обо мне', 
-      experience: 'Опыт работы',
-      stack: 'Стек технологий',
-      highlights: 'Основные достижения',
-      responsibilities: 'Обязанности',
-      skills: 'Навыки',
-    },
-  },
-  en: {
-    translation: {
-      name: 'Nick Ialkaev',
-      description: 'Lead Fullstack Developer with over 6 years of commercial software development experience, covering the full product lifecycle—from architecture design to production deployment. I specialize in building scalable web applications using modern technology stacks. Looking for a company with a relevant tech stack (.NET, React, Vue, microservices) and challenging tasks where I can leverage my expertise to solve complex business problems and mentor teams.',
-      contact: 'Contact:',
-      telegram: '@yalkaev (Telegram)',
-      about: 'About Me', 
-      experience: 'Work Experience',
-      stack: 'Tech Stack',
-      highlights: 'Key Achievements',
-      responsibilities: 'Responsibilities',
-      skills: 'Skills',
-    },
-  },
-};
+import HttpApi from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
 i18n
-  .use(initReactI18next)
+  .use(HttpApi) // Загрузка переводов из public/locales
+  .use(LanguageDetector) // Автоопределение языка пользователя
+  .use(initReactI18next) // Интеграция с React
   .init({
-    resources,
-    lng: 'ru',
+    supportedLngs: ['en', 'ru'], // Поддерживаемые языки
+    fallbackLng: 'ru', // Язык по умолчанию
+    debug: true, // Включите для отладки в консоли
+    backend: {
+      loadPath: '/locales/{{lng}}/translation.json', // Путь к файлам переводов
+    },
     interpolation: {
-      escapeValue: false,
+      escapeValue: false, // React уже экранирует значения
     },
   });
 
