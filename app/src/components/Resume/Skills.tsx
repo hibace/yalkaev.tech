@@ -19,14 +19,14 @@ import {
   SiGitlab,
   SiJirasoftware,
   SiScrumalliance,
-  SiSharp,
 } from 'react-icons/si';
 import { FaCode, FaTasks, FaUsers, FaCodeBranch } from 'react-icons/fa';
 import { TbSql } from 'react-icons/tb';
 
 const skillIcons: { [key: string]: JSX.Element } = {
   '.NET': <SiDotnet />,
-  'C#': <SiSharp />,
+  'C#': <SiDotnet />,
+  'Entity Framework': <SiDotnet />,
   PostgreSQL: <SiPostgresql />,
   'T-SQL': <TbSql />,
   JavaScript: <SiJavascript />,
@@ -38,7 +38,6 @@ const skillIcons: { [key: string]: JSX.Element } = {
   Redux: <SiRedux />,
   RabbitMQ: <SiRabbitmq />,
   'Apache Pulsar': <SiApachepulsar />,
-  'Entity Framework': <SiDotnet />,
   Hangfire: <FaTasks />,
   Quartz: <FaTasks />,
   'CQRS (MediatR)': <FaCode />,

@@ -1,9 +1,10 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Avatar } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { sectionVariants } from '../../animations/variants';
 
-export default function About() {
+const About: React.FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -20,7 +21,7 @@ export default function About() {
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <Avatar
-          src="/avatar.jpeg"
+          src="/avatar.jpg"
           alt={t('name')}
           sx={{ width: 120, height: 120, margin: '0 auto', mb: 2, border: '2px solid' }}
           className="bg-[#F3F4F6] dark:bg-gray-800 text-primary dark:text-secondary-dark border-primary dark:border-primary-dark"
@@ -44,4 +45,6 @@ export default function About() {
       </motion.p>
     </motion.section>
   );
-}
+};
+
+export default About;

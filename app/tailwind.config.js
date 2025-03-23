@@ -7,7 +7,7 @@ module.exports = {
       colors: {
         primary: { DEFAULT: '#546fb3', dark: '#4B6A88' },
         secondary: { DEFAULT: '#4B5563', dark: '#B8C4D3' },
-        accent: { light: '#D1D5DB', dark: '#A3BFFA' },
+        accent: { light: '#e8eaea', dark: '#A3BFFA' },
       },
       boxShadow: {
         'xl': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',

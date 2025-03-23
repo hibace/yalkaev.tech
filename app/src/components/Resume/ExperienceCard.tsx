@@ -1,21 +1,33 @@
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Chip } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { itemVariants } from '../../animations/variants';
 
+interface ExperienceData {
+  positionKey: string;
+  companyKey: string;
+  locationKey: string;
+  periodKey: string;
+  durationKey: string;
+  stack: string[];
+  highlightsKeys?: string[];
+  responsibilitiesKeys: string[];
+}
+
 interface ExperienceCardProps {
-  experience: any; // Можно уточнить тип позже
+  experience: ExperienceData;
   index: number;
   openCard: number | null;
   toggleCard: (index: number) => void;
 }
 
-export default function ExperienceCard({
+const ExperienceCard: React.FC<ExperienceCardProps> = ({
   experience,
   index,
   openCard,
   toggleCard,
-}: ExperienceCardProps) {
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -124,4 +136,6 @@ export default function ExperienceCard({
       </div>
     </motion.div>
   );
-}
+};
+
+export default ExperienceCard;

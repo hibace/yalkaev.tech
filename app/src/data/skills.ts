@@ -1,6 +1,7 @@
 export const skills = [
   '.NET',
   'C#',
+  'Entity Framework',
   'PostgreSQL',
   'T-SQL',
   'JavaScript',
@@ -12,7 +13,6 @@ export const skills = [
   'Redux',
   'RabbitMQ',
   'Apache Pulsar',
-  'Entity Framework',
   'Hangfire',
   'Quartz',
   'CQRS (MediatR)',

@@ -1,30 +1,36 @@
-// src/components/Header.tsx
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { IconButton } from '@mui/material';
-import { Brightness4, Brightness7, Person, Build, Work } from '@mui/icons-material';
+import { Brightness4, Brightness7, Person, Work } from '@mui/icons-material';
 import { RussianFlag, USFlag } from './Flags';
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+// Тип для объекта i18n из react-i18next
+interface I18n {
+  language: string;
+  changeLanguage: (lang: string) => void;
+}
+
+// Компонент как React.FC с типизацией
+const Header: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const { i18n, t } = useTranslation();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = (): void => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const updateFavicon = () => {
-    const favicon = document.getElementById('favicon');
+  const updateFavicon = (): void => {
+    const favicon = document.getElementById('favicon') as HTMLLinkElement | null;
     if (favicon) {
       favicon.href = `/favicon.svg?${new Date().getTime()}`;
     }
   };
 
-  const toggleTheme = () => {
+  const toggleTheme = (): void => {
     document.documentElement.classList.toggle('dark');
     localStorage.setItem(
       'theme',
@@ -33,11 +39,16 @@ export default function Header() {
     updateFavicon();
   };
 
-  const toggleLanguage = () => i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
+  const toggleLanguage = (): void => {
+    const newLang = (i18n as I18n).language === 'ru' ? 'en' : 'ru';
+    (i18n as I18n).changeLanguage(newLang);
+  };
 
   return (
     <motion.header
-      className={`bg-primary dark:bg-primary-dark text-white sticky top-0 z-50 shadow-md transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'}`}
+      className={`bg-primary dark:bg-primary-dark text-white sticky top-0 z-50 shadow-md transition-all duration-300 ${
+        isScrolled ? 'py-1' : 'py-2'
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -65,7 +76,7 @@ export default function Header() {
             {t('experience')}
           </a>
           <IconButton onClick={toggleLanguage} sx={{ color: 'white' }}>
-            {i18n.language === 'ru' ? (
+            {(i18n as I18n).language === 'ru' ? (
               <RussianFlag className="w-5 h-5" />
             ) : (
               <USFlag className="w-5 h-5" />
@@ -79,7 +90,11 @@ export default function Header() {
             )}
           </IconButton>
         </div>
-        <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+        <button
+          className="md:hidden"
+          onClick={() => setIsOpen((prev) => !prev)}
+          aria-label="Toggle menu"
+        >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
@@ -110,15 +125,17 @@ export default function Header() {
             onClick={toggleLanguage}
             className="flex items-center text-sm uppercase hover:text-accent-light dark:hover:text-accent-dark transition-colors"
           >
-            {i18n.language === 'ru' ? (
+            {(i18n as I18n).language === 'ru' ? (
               <RussianFlag className="w-5 h-5 mr-1" />
             ) : (
               <USFlag className="w-5 h-5 mr-1" />
             )}
-            {i18n.language === 'ru' ? 'RU' : 'EN'}
+            {(i18n as I18n).language === 'ru' ? 'RU' : 'EN'}
           </button>
         </div>
       )}
     </motion.header>
   );
-}
+};
+
+export default Header;

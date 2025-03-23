@@ -1,9 +1,9 @@
-// src/components/Footer.tsx
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Telegram, Mail } from '@mui/icons-material';
 
-export default function Footer() {
+const Footer: React.FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -38,4 +38,6 @@ export default function Footer() {
       </div>
     </motion.footer>
   );
-}
+};
+
+export default Footer;

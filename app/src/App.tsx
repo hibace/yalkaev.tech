@@ -1,10 +1,11 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
 import Resume from './pages/Resume';
 import Footer from './components/Footer';
 
-function App() {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className="min-h-screen flex flex-col">
@@ -23,6 +24,6 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
