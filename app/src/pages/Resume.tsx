@@ -160,7 +160,7 @@ export default function Resume() {
                   key={skill}
                   label={skill}
                   variant="outlined"
-                  className="bg-[#F3F4F6] dark:bg-gray-800 text-primary dark:text-primary-dark border-primary dark:border-primary-dark text-sm"
+                  className="bg-[#F3F4F6] dark:bg-gray-800 text-primary dark:text-secondary-dark border-primary dark:border-primary-dark text-sm"
                 />
               ))}
             </div>
