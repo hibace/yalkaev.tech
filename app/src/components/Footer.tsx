@@ -8,7 +8,7 @@ export default function Footer() {
 
   return (
     <motion.footer
-      className="bg-primary dark:bg-primary-dark text-white py-6"
+      className="bg-primary dark:bg-primary-dark text-white py-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
