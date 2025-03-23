@@ -1,0 +1,15 @@
+<!-- public/favicon.svg -->
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .background { fill: #3B82F6; } /* primary.DEFAULT для светлой темы */
+    .text { fill: #DBEAFE; } /* accent.light для светлой темы */
+    @media (prefers-color-scheme: dark) {
+      .background { fill: #0284C7; } /* primary.dark для темной темы */
+      .text { fill: #7DD3FC; } /* accent.dark для темной темы */
+    }
+  </style>
+  <circle cx="16" cy="16" r="16" class="background"/>
+  <text x="50%" y="50%" font-family="Inter, sans-serif" font-size="14" font-weight="bold" class="text" text-anchor="middle" dominant-baseline="middle">
+    NY
+  </text>
+</svg>

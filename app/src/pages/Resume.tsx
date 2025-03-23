@@ -107,168 +107,102 @@ export default function Resume() {
   const { t } = useTranslation();
 
   return (
-    <section className="container mx-auto px-6 py-12">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-4xl mx-auto"
-      >
-        <section id="about" className="text-center mb-12">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Avatar
-              src="/avatar.jpeg"
-              alt={t('name')}
-              sx={{ width: 150, height: 150, margin: '0 auto', mb: 3, border: '4px solid', borderColor: 'primary.main' }}
-              className="shadow-lg"
-            />
-          </motion.div>
-          <motion.h1
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-5xl font-bold text-primary dark:text-primary-dark mb-4"
-          >
+    <section className="container mx-auto px-4 py-8 bg-white dark:bg-gray-900">
+      <div className="max-w-3xl mx-auto">
+        {/* About */}
+        <section id="about" className="text-center mb-8">
+          <Avatar
+            src="/avatar.jpeg"
+            alt={t('name')}
+            sx={{ width: 120, height: 120, margin: '0 auto', mb: 2, border: '4px solid' }}
+            className="shadow-md border-green-400 dark:border-secondary"
+          />
+          <h1 className="text-3xl font-bold text-primary dark:text-primary-dark mb-2">
             {t('name')}
-          </motion.h1>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto"
-          >
+          </h1>
+          <p className="text-base text-gray-700 dark:text-gray-300 max-w-xl mx-auto">
             {t('description')}
-          </motion.p>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="mt-4 text-secondary dark:text-secondary-dark"
-          >
+          </p>
+          <p className="mt-2 text-secondary dark:text-secondary-dark text-sm">
             {t('contact')}{' '}
-            <a
-              href="https://t.me/yalkaev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent-light dark:text-accent-dark hover:underline transition-colors duration-300"
-            >
+            <a href="https://t.me/yalkaev" target="_blank" rel="noopener noreferrer" className="text-accent-light dark:text-accent-dark hover:underline transition-colors">
               {t('telegram')}
             </a>
-          </motion.p>
+          </p>
         </section>
 
-        <section id="skills" className="mb-12">
-          <motion.h2
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl font-semibold text-secondary dark:text-secondary-dark mb-6"
-          >
+        {/* Skills */}
+        <section id="skills" className="mb-8">
+          <h2 className="text-2xl font-semibold text-secondary dark:text-secondary-dark mb-3">
             {t('skills')}
-          </motion.h2>
-          <div className="flex flex-wrap gap-3">
-            {skills.map((skill, index) => (
-              <motion.div
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {skills.map((skill) => (
+              <Chip
                 key={skill}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                whileHover={{ scale: 1.1, rotate: 2 }}
-                className="cursor-pointer"
-              >
-                <Chip
-                  label={skill}
-                  color="secondary"
-                  variant="outlined"
-                  className="shadow-sm hover:shadow-md transition-shadow duration-300"
-                />
-              </motion.div>
+                label={skill}
+                variant="outlined"
+                className="bg-white dark:bg-gray-800 text-primary dark:text-primary-dark border-primary dark:border-primary-dark text-sm"
+              />
             ))}
           </div>
         </section>
 
-        <section id="experience" className="mb-12">
-          <motion.h2
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl font-semibold text-secondary dark:text-secondary-dark mb-6"
-          >
+        {/* Experience */}
+        <section id="experience">
+          <h2 className="text-2xl font-semibold text-secondary dark:text-secondary-dark mb-3">
             {t('experience')}
-          </motion.h2>
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
-              whileHover={{ y: -5 }}
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-xl font-semibold dark:text-gray-100">{exp.position}</h3>
-                  <p className="text-secondary dark:text-secondary-dark">{exp.company} — {exp.location}</p>
+          </h2>
+          <div className="space-y-4">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.02 }}
+                className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md border-l-4 border-primary dark:border-primary-dark transition-transform duration-200"
+              >
+                <div className="flex flex-col md:flex-row justify-between items-start mb-2">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{exp.position}</h3>
+                    <p className="text-secondary dark:text-secondary-dark text-sm">{exp.company} — {exp.location}</p>
+                  </div>
+                  <span className="text-sm text-gray-600 dark:text-gray-400 mt-1 md:mt-0">{exp.period} ({exp.duration})</span>
                 </div>
-                <span className="text-sm text-gray-600 dark:text-gray-400">{exp.period} ({exp.duration})</span>
-              </div>
-
-              <div className="mt-4">
-                <h4 className="font-medium mb-2 dark:text-gray-200">{t('stack')}:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {exp.stack.map((tech) => (
-                    <Chip
-                      key={tech}
-                      label={tech}
-                      color="primary"
-                      size="small"
-                      className="shadow-sm hover:shadow-md transition-shadow duration-300"
-                    />
-                  ))}
+                <div className="mt-2">
+                  <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('stack')}:</h4>
+                  <div className="flex flex-wrap gap-1">
+                    {exp.stack.map((tech) => (
+                      <Chip
+                        key={tech}
+                        label={tech}
+                        size="small"
+                        className="bg-accent-light dark:bg-accent-dark text-primary dark:text-primary-dark"
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              {exp.highlights && (
-                <div className="mt-4">
-                  <h4 className="font-medium mb-2 dark:text-gray-200">{t('highlights')}:</h4>
-                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                    {exp.highlights.map((highlight, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3, delay: i * 0.1 }}
-                      >
-                        {highlight}
-                      </motion.li>
+                {exp.highlights && (
+                  <div className="mt-2">
+                    <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('highlights')}:</h4>
+                    <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm">
+                      {exp.highlights.map((highlight, i) => (
+                        <li key={i}>{highlight}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                <div className="mt-2">
+                  <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('responsibilities')}:</h4>
+                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm">
+                    {exp.responsibilities.map((resp, i) => (
+                      <li key={i}>{resp}</li>
                     ))}
                   </ul>
                 </div>
-              )}
-
-              <div className="mt-4">
-                <h4 className="font-medium mb-2 dark:text-gray-200">{t('responsibilities')}:</h4>
-                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                  {exp.responsibilities.map((resp, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3, delay: i * 0.1 }}
-                    >
-                      {resp}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </section>
-      </motion.div>
+      </div>
     </section>
   );
 }
