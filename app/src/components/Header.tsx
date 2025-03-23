@@ -5,16 +5,17 @@ import { IconButton } from '@mui/material';
 import { Brightness4, Brightness7, Person, Work } from '@mui/icons-material';
 import { RussianFlag, USFlag } from './Flags';
 
-// Тип для объекта i18n из react-i18next
 interface I18n {
   language: string;
   changeLanguage: (lang: string) => void;
 }
 
-// Компонент как React.FC с типизацией
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
   const { i18n, t } = useTranslation();
 
   useEffect(() => {
@@ -22,6 +23,18 @@ const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isDarkTheme) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkTheme]);
+
+  useEffect(() => {
+    document.title = `${t('name')} - ${t('title')}`;
+  }, [i18n.language, t]);
 
   const updateFavicon = (): void => {
     const favicon = document.getElementById('favicon') as HTMLLinkElement | null;
@@ -31,12 +44,12 @@ const Header: React.FC = () => {
   };
 
   const toggleTheme = (): void => {
-    document.documentElement.classList.toggle('dark');
-    localStorage.setItem(
-      'theme',
-      document.documentElement.classList.contains('dark') ? 'dark' : 'light',
-    );
-    updateFavicon();
+    setIsDarkTheme((prev) => {
+      const newTheme = !prev;
+      localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+      updateFavicon();
+      return newTheme;
+    });
   };
 
   const toggleLanguage = (): void => {
@@ -83,11 +96,7 @@ const Header: React.FC = () => {
             )}
           </IconButton>
           <IconButton onClick={toggleTheme} sx={{ color: 'white' }}>
-            {document.documentElement.classList.contains('dark') ? (
-              <Brightness7 />
-            ) : (
-              <Brightness4 />
-            )}
+            {isDarkTheme ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
         </div>
         <button

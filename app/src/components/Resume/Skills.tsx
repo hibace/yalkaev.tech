@@ -1,3 +1,4 @@
+import React, { JSX } from 'react';
 import { motion } from 'framer-motion';
 import { Chip } from '@mui/material';
 import { useTranslation } from 'react-i18next';
@@ -23,10 +24,14 @@ import {
 import { FaCode, FaTasks, FaUsers, FaCodeBranch } from 'react-icons/fa';
 import { TbSql } from 'react-icons/tb';
 
-const skillIcons: { [key: string]: JSX.Element } = {
+// Тип для объекта skillIcons
+interface SkillIcons {
+  [key: string]: JSX.Element;
+}
+
+const skillIcons: SkillIcons = {
   '.NET': <SiDotnet />,
   'C#': <SiDotnet />,
-  'Entity Framework': <SiDotnet />,
   PostgreSQL: <SiPostgresql />,
   'T-SQL': <TbSql />,
   JavaScript: <SiJavascript />,
@@ -38,6 +43,7 @@ const skillIcons: { [key: string]: JSX.Element } = {
   Redux: <SiRedux />,
   RabbitMQ: <SiRabbitmq />,
   'Apache Pulsar': <SiApachepulsar />,
+  'Entity Framework': <SiDotnet />,
   Hangfire: <FaTasks />,
   Quartz: <FaTasks />,
   'CQRS (MediatR)': <FaCode />,
@@ -50,7 +56,7 @@ const skillIcons: { [key: string]: JSX.Element } = {
   'Code Review': <FaCodeBranch />,
 };
 
-export default function Skills() {
+const Skills: React.FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -91,4 +97,6 @@ export default function Skills() {
       </div>
     </motion.section>
   );
-}
+};
+
+export default Skills;
