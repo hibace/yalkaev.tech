@@ -59,7 +59,8 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
             {t(experience.companyKey)} — {t(experience.locationKey)}
           </p>
           <span className="text-sm text-gray-600 dark:text-gray-400">
-            {t(experience.periodKey)} ({t(experience.durationKey)})
+            {t(experience.periodKey)}{' '}
+            {t(experience.durationKey) ? `(${t(experience.durationKey)})` : ''}
           </span>
           <AnimatePresence>
             {openCard === index && (

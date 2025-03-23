@@ -15,7 +15,7 @@ export const skills = [
   'Apache Pulsar',
   'Hangfire',
   'Quartz',
-  'CQRS (MediatR)',
+  'CQRS',
   'Docker',
   'Kubernetes',
   'CI/CD',

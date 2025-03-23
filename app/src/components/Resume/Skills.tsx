@@ -46,7 +46,7 @@ const skillIcons: SkillIcons = {
   'Entity Framework': <SiDotnet />,
   Hangfire: <FaTasks />,
   Quartz: <FaTasks />,
-  'CQRS (MediatR)': <FaCode />,
+  CQRS: <FaCode />,
   Docker: <SiDocker />,
   Kubernetes: <SiKubernetes />,
   'CI/CD': <SiGitlab />,

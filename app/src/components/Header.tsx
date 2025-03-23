@@ -130,17 +130,18 @@ const Header: React.FC = () => {
             <Work className="mr-1" fontSize="small" />
             {t('experience')}
           </a>
-          <button
-            onClick={toggleLanguage}
-            className="flex items-center text-sm uppercase hover:text-accent-light dark:hover:text-accent-dark transition-colors"
-          >
-            {(i18n as I18n).language === 'ru' ? (
-              <RussianFlag className="w-5 h-5 mr-1" />
-            ) : (
-              <USFlag className="w-5 h-5 mr-1" />
-            )}
-            {(i18n as I18n).language === 'ru' ? 'RU' : 'EN'}
-          </button>
+          <div className="flex space-x-2">
+            <IconButton onClick={toggleLanguage} sx={{ color: 'white' }}>
+              {(i18n as I18n).language === 'ru' ? (
+                <RussianFlag className="w-5 h-5" />
+              ) : (
+                <USFlag className="w-5 h-5" />
+              )}
+            </IconButton>
+            <IconButton onClick={toggleTheme} sx={{ color: 'white' }}>
+              {isDarkTheme ? <Brightness7 /> : <Brightness4 />}
+            </IconButton>
+          </div>
         </div>
       )}
     </motion.header>
