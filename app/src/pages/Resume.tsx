@@ -1,11 +1,14 @@
-import { motion } from 'framer-motion';
+// src/pages/Resume.tsx
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Chip, Avatar } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Telegram, Mail } from '@mui/icons-material'; // Импорт иконок
+import { Telegram, Mail } from '@mui/icons-material';
 
+// Данные experiences (без изменений)
 const experiences = [
   {
-    period: 'Январь 2025 — по настоящее время',
+    period: 'Январь 2025 — Март 2025',
     duration: '3 месяца',
     company: 'ООО «Карьерный компас»',
     location: 'Набережные Челны, tams-cc.ru',
@@ -105,6 +108,11 @@ const skills = [
 
 export default function Resume() {
   const { t } = useTranslation();
+  const [openCard, setOpenCard] = useState<number | null>(null); // Состояние для открытой карточки
+
+  const toggleCard = (index: number) => {
+    setOpenCard(openCard === index ? null : index); // Открываем/закрываем карточку
+  };
 
   return (
     <section className="container mx-auto px-4 py-8 bg-[#F3F4F6] dark:bg-gray-900">
@@ -146,7 +154,7 @@ export default function Resume() {
             </a>
           </div>
         </section>
-        
+
         {/* Skills */}
         <section id="skills" className="mb-8">
           <h2 className="text-2xl font-semibold text-secondary dark:text-secondary-dark mb-3">
@@ -173,47 +181,64 @@ export default function Resume() {
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
+                className="bg-[#F3F4F6] dark:bg-gray-800 rounded-lg shadow-md border-l-4 border-primary dark:border-primary-dark cursor-pointer overflow-hidden"
+                onClick={() => toggleCard(index)}
                 whileHover={{ scale: 1.02 }}
-                className="bg-[#F3F4F6] dark:bg-gray-800 p-4 rounded-lg shadow-md border-l-4 border-primary dark:border-primary-dark transition-transform duration-200"
+                transition={{ duration: 0.2 }}
               >
-                <div className="flex flex-col md:flex-row justify-between items-start mb-2">
+                {/* Заголовок карточки (всегда виден) */}
+                <div className="p-4 flex flex-col md:flex-row justify-between items-start">
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{exp.position}</h3>
                     <p className="text-secondary dark:text-secondary-dark text-sm">{exp.company} — {exp.location}</p>
                   </div>
                   <span className="text-sm text-gray-600 dark:text-gray-400 mt-1 md:mt-0">{exp.period} ({exp.duration})</span>
                 </div>
-                <div className="mt-2">
-                  <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('stack')}:</h4>
-                  <div className="flex flex-wrap gap-1">
-                    {exp.stack.map((tech) => (
-                      <Chip
-                        key={tech}
-                        label={tech}
-                        size="small"
-                        className="bg-accent-light dark:bg-accent-dark text-primary dark:text-primary-dark"
-                      />
-                    ))}
-                  </div>
-                </div>
-                {exp.highlights && (
-                  <div className="mt-2">
-                    <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('highlights')}:</h4>
-                    <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm">
-                      {exp.highlights.map((highlight, i) => (
-                        <li key={i}>{highlight}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                <div className="mt-2">
-                  <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('responsibilities')}:</h4>
-                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm">
-                    {exp.responsibilities.map((resp, i) => (
-                      <li key={i}>{resp}</li>
-                    ))}
-                  </ul>
-                </div>
+
+                {/* Раскрываемая часть */}
+                <AnimatePresence>
+                  {openCard === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="p-4 bg-accent-light dark:bg-gray-700"
+                    >
+                      <div className="mt-2">
+                        <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('stack')}:</h4>
+                        <div className="flex flex-wrap gap-1 mt-1">
+                          {exp.stack.map((tech) => (
+                            <Chip
+                              key={tech}
+                              label={tech}
+                              size="small"
+                              className="bg-primary dark:bg-primary-dark text-white"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      {exp.highlights && (
+                        <div className="mt-4">
+                          <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('highlights')}:</h4>
+                          <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm mt-1">
+                            {exp.highlights.map((highlight, i) => (
+                              <li key={i}>{highlight}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      <div className="mt-4">
+                        <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('responsibilities')}:</h4>
+                        <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm mt-1">
+                          {exp.responsibilities.map((resp, i) => (
+                            <li key={i}>{resp}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>
