@@ -5,18 +5,18 @@ import HttpApi from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 i18n
-  .use(HttpApi) // Загрузка переводов из public/locales
-  .use(LanguageDetector) // Автоопределение языка пользователя
-  .use(initReactI18next) // Интеграция с React
+  .use(HttpApi)
+  .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
-    supportedLngs: ['en', 'ru'], // Поддерживаемые языки
-    fallbackLng: 'ru', // Язык по умолчанию
-    debug: true, // Включите для отладки в консоли
+    supportedLngs: ['en', 'ru'],
+    fallbackLng: 'ru',
+    debug: true,
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json', // Путь к файлам переводов
+      loadPath: '/locales/{{lng}}/translation.json',
     },
     interpolation: {
-      escapeValue: false, // React уже экранирует значения
+      escapeValue: false,
     },
   });
 
