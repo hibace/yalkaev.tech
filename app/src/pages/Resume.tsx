@@ -1,7 +1,7 @@
-// src/pages/Resume.tsx
 import { motion } from 'framer-motion';
 import { Chip, Avatar } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { Telegram, Mail } from '@mui/icons-material'; // Импорт иконок
 
 const experiences = [
   {
@@ -107,7 +107,7 @@ export default function Resume() {
   const { t } = useTranslation();
 
   return (
-    <section className="container mx-auto px-4 py-8 bg-white dark:bg-gray-900">
+    <section className="container mx-auto px-4 py-8 bg-[#F3F4F6] dark:bg-gray-900">
       <div className="max-w-3xl mx-auto">
         {/* About */}
         <section id="about" className="text-center mb-8">
@@ -115,7 +115,7 @@ export default function Resume() {
             src="/avatar.jpeg"
             alt={t('name')}
             sx={{ width: 120, height: 120, margin: '0 auto', mb: 2, border: '4px solid' }}
-            className="shadow-md border-green-400 dark:border-secondary"
+            className="shadow-md border-primary dark:border-secondary"
           />
           <h1 className="text-3xl font-bold text-primary dark:text-primary-dark mb-2">
             {t('name')}
@@ -123,14 +123,30 @@ export default function Resume() {
           <p className="text-base text-gray-700 dark:text-gray-300 max-w-xl mx-auto">
             {t('description')}
           </p>
-          <p className="mt-2 text-secondary dark:text-secondary-dark text-sm">
-            {t('contact')}{' '}
-            <a href="https://t.me/yalkaev" target="_blank" rel="noopener noreferrer" className="text-accent-light dark:text-accent-dark hover:underline transition-colors">
-              {t('telegram')}
-            </a>
-          </p>
         </section>
 
+        {/* Contact */}
+        <section id="contact" className="text-center mb-8">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+            <a
+              href="https://t.me/yalkaev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-primary dark:text-primary-dark hover:text-accent-light dark:hover:text-accent-dark transition-colors text-base"
+            >
+              <Telegram className="mr-2" />
+              Telegram
+            </a>
+            <a
+              href="mailto:yalkaevnikolai@gmail.com"
+              className="flex items-center text-primary dark:text-primary-dark hover:text-accent-light dark:hover:text-accent-dark transition-colors text-base"
+            >
+              <Mail className="mr-2" />
+              yalkaevnikolai@gmail.com
+            </a>
+          </div>
+        </section>
+        
         {/* Skills */}
         <section id="skills" className="mb-8">
           <h2 className="text-2xl font-semibold text-secondary dark:text-secondary-dark mb-3">
@@ -142,14 +158,14 @@ export default function Resume() {
                 key={skill}
                 label={skill}
                 variant="outlined"
-                className="bg-white dark:bg-gray-800 text-primary dark:text-primary-dark border-primary dark:border-primary-dark text-sm"
+                className="bg-[#F3F4F6] dark:bg-gray-800 text-primary dark:text-primary-dark border-primary dark:border-primary-dark text-sm"
               />
             ))}
           </div>
         </section>
 
         {/* Experience */}
-        <section id="experience">
+        <section id="experience" className="mb-8">
           <h2 className="text-2xl font-semibold text-secondary dark:text-secondary-dark mb-3">
             {t('experience')}
           </h2>
@@ -158,7 +174,7 @@ export default function Resume() {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.02 }}
-                className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md border-l-4 border-primary dark:border-primary-dark transition-transform duration-200"
+                className="bg-[#F3F4F6] dark:bg-gray-800 p-4 rounded-lg shadow-md border-l-4 border-primary dark:border-primary-dark transition-transform duration-200"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start mb-2">
                   <div>
