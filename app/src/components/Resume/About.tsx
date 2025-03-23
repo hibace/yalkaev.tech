@@ -21,7 +21,7 @@ const About: React.FC = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <Avatar
-          src="/avatar.jpg"
+          src="/avatar.jpeg"
           alt={t('name')}
           sx={{ width: 120, height: 120, margin: '0 auto', mb: 2, border: '2px solid' }}
           className="bg-[#F3F4F6] dark:bg-gray-800 text-primary dark:text-secondary-dark border-primary dark:border-primary-dark"
