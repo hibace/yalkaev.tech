@@ -24,7 +24,6 @@ import {
 import { FaCode, FaTasks, FaUsers, FaCodeBranch } from 'react-icons/fa';
 import { TbSql } from 'react-icons/tb';
 
-// Тип для объекта skillIcons
 interface SkillIcons {
   [key: string]: JSX.Element;
 }

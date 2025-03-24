@@ -8,24 +8,22 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    supportedLngs: ['en', 'ru'], // Поддерживаемые языки
-    fallbackLng: 'ru', // Язык по умолчанию, если определение не удалось
-    debug: true, // Оставляем для отладки
+    supportedLngs: ['en', 'ru'],
+    fallbackLng: 'en',
+    debug: true,
     detection: {
-      // Настройки LanguageDetector
-      order: ['localStorage', 'navigator'], // Сначала проверяем localStorage, затем браузер
-      caches: ['localStorage'], // Сохраняем язык в localStorage
-      lookupLocalStorage: 'i18nextLng', // Ключ для localStorage
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage'],
+      lookupLocalStorage: 'i18nextLng',
     },
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json', // Путь к файлам переводов
+      loadPath: '/locales/{{lng}}/translation.json',
     },
     interpolation: {
-      escapeValue: false, // React сам экранирует значения
+      escapeValue: false,
     },
   });
 
-// Сохраняем язык в localStorage при его смене (дополнительная страховка)
 i18n.on('languageChanged', (lng) => {
   localStorage.setItem('i18nextLng', lng);
 });
