@@ -20,12 +20,12 @@ Personal portfolio website built with React, TypeScript, and Vite. This project 
 1. Clone the repository:
    ```bash
    git clone https://github.com/hibace/yalkaev.tech.git
-   cd yalkaev.tech`
+   cd yalkaev.tech
 
-2. Checkout the dev branch:
+2. Install dependencies:
    ```bash
-   git checkout dev`
+   npm install
 
-3. Install dependencies:
-   ```bash
-   npm install`
+3. Start the development server:
+   ```bash 
+   npm run dev
