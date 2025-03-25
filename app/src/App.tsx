@@ -5,11 +5,9 @@ import Header from './components/Header';
 import Resume from './pages/Resume';
 import Footer from './components/Footer';
 
-const counterId = 100579836;
-
 declare global {
   interface Window {
-    ym?: (counterId: number, action: string, ...args: any[]) => void;
+    ym?: (counterId: number, action: 'init' | 'hit', options?: any) => void;
   }
 }
 
@@ -17,8 +15,8 @@ const RouteTracker: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (window.ym) {
-      window.ym(counterId, 'hit', window.location.href);
+    if (window.ym && typeof window.ym === 'function') {
+      window.ym(100579836, 'hit', window.location.href);
     }
   }, [location]);
 
@@ -27,20 +25,26 @@ const RouteTracker: React.FC = () => {
 
 const App: React.FC = () => {
   useEffect(() => {
-    if (typeof window !== 'undefined' && !window.ym) {
+    if (!window.ym) {
       const script = document.createElement('script');
       script.src = 'https://mc.yandex.ru/metrika/tag.js';
       script.async = true;
-      document.head.appendChild(script);
-
       script.onload = () => {
-        window.ym?.(counterId, 'init', {
-          clickmap: true,
-          trackLinks: true,
-          accurateTrackBounce: true,
-          webvisor: true
-        });
+        if (window.ym) {
+          window.ym(100579836, 'init', {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+          });
+        } else {
+          console.error('Яндекс.Метрика не инициализирована');
+        }
       };
+      script.onerror = () => {
+        console.error('Ошибка загрузки Яндекс.Метрики');
+      };
+      document.head.appendChild(script);
     }
   }, []);
 
