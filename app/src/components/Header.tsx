@@ -36,18 +36,10 @@ const Header: React.FC = () => {
     document.title = `${t('name')} - ${t('title')}`;
   }, [i18n.language, t]);
 
-  const updateFavicon = (): void => {
-    const favicon = document.getElementById('favicon') as HTMLLinkElement | null;
-    if (favicon) {
-      favicon.href = `/favicon.svg?${new Date().getTime()}`;
-    }
-  };
-
   const toggleTheme = (): void => {
     setIsDarkTheme((prev) => {
       const newTheme = !prev;
       localStorage.setItem('theme', newTheme ? 'dark' : 'light');
-      updateFavicon();
       return newTheme;
     });
   };
