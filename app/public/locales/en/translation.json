@@ -71,5 +71,20 @@
   "experience.navicon.responsibilities.8": "Created CRM form scripts for projects (Stihl, Sanofi, Alfacapital, OMC, Petrovax)",
   "experience.navicon.responsibilities.9": "Developed plugins and workflows for CRM (Promomed, OMC, Valeant, HSE, VTB Leasing)",
   "experience.navicon.responsibilities.10": "Developed OMC-MDM integration",
-  "experience.navicon.responsibilities.11": "Developed scripts for Mobile RESCO CRM (RPHARM, Petrovax, Novamedica, Promomed, Tooltech)"
+  "experience.navicon.responsibilities.11": "Developed scripts for Mobile RESCO CRM (RPHARM, Petrovax, Novamedica, Promomed, Tooltech)",
+  "feedback": {
+    "title": "Contact Me",
+    "success": "Thank you! Your message has been sent.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "namePlaceholder": "Your name",
+    "messagePlaceholder": "Your message...",
+    "submit": "Send Message",
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "minLength": "Minimum {{count}} characters required",
+    "showForm": "Feedback form",
+    "hideForm": "Hide form"
+  }
 }

@@ -71,5 +71,20 @@
   "experience.navicon.responsibilities.8": "Создание скриптов форм CRM для проектов (Stihl, Sanofi, Alfacapital, OMC, Petrovax)",
   "experience.navicon.responsibilities.9": "Разработка плагинов и рабочих процессов для CRM (Promomed, OMC, Valeant, HSE, VTB Leasing)",
   "experience.navicon.responsibilities.10": "Разработка интеграции OMC-MDM",
-  "experience.navicon.responsibilities.11": "Разработка скриптов для Mobile RESCO CRM (RPHARM, Petrovax, Novamedica, Promomed, Tooltech)"
+  "experience.navicon.responsibilities.11": "Разработка скриптов для Mobile RESCO CRM (RPHARM, Petrovax, Novamedica, Promomed, Tooltech)",
+  "feedback": {
+    "title": "Обратная связь",
+    "success": "Спасибо! Ваше сообщение отправлено.",
+    "name": "Имя",
+    "email": "Email",
+    "message": "Сообщение",
+    "namePlaceholder": "Ваше имя",
+    "messagePlaceholder": "Ваше сообщение...",
+    "submit": "Отправить",
+    "required": "Обязательное поле",
+    "invalidEmail": "Некорректный email",
+    "minLength": "Минимум {{count}} символов",
+    "showForm": "Связаться со мной",
+    "hideForm": "Скрыть форму обратной связи"
+  }
 }
