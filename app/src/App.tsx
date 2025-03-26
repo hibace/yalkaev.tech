@@ -4,13 +4,13 @@ import { motion } from 'framer-motion';
 import Header from './components/Header';
 import Resume from './pages/Resume';
 import Footer from './components/Footer';
-import RouteTracker from './components/RouteTracker';
+import YandexMetrika from './components/YandexMetrika';
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className="min-h-screen flex flex-col">
-        <RouteTracker />
+        <YandexMetrika />
         <Header />
         <motion.main
           initial={{ opacity: 0 }}
