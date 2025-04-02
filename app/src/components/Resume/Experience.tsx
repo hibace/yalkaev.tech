@@ -6,6 +6,7 @@ import ExperienceCard from './ExperienceCard';
 import { sectionVariants, itemVariants } from '../../animations/variants';
 import { Tooltip } from '@mui/material';
 import { Download } from '@mui/icons-material';
+import i18n from '../../i18n';
 
 const Experience: React.FC = () => {
   const { t } = useTranslation();
@@ -14,6 +15,10 @@ const Experience: React.FC = () => {
   const toggleCard = (index: number): void => {
     setOpenCard(openCard === index ? null : index);
   };
+
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  const currentLang = i18n.language || 'en'; 
+  const resumePath = `${baseUrl.replace(/\/$/, '')}/resume/resume-${currentLang}.pdf`;
 
   return (
     <motion.section
@@ -66,7 +71,7 @@ const Experience: React.FC = () => {
             }}
           >
             <motion.a
-              href="/resume.pdf"
+              href={resumePath}
               download="Nikolai_Yalkaev_Resume.pdf"
               className="flex items-center text-primary dark:text-primary-dark hover:text-accent-dark dark:hover:text-accent-dark transition-colors text-base"
               variants={itemVariants}
