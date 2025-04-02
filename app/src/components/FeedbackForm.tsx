@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Close } from "@mui/icons-material";
+import { Close } from '@mui/icons-material';
 
 interface FormData {
   name: string;
@@ -17,22 +17,58 @@ interface FeedbackFormProps {
 
 export const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+  });
 
-  const onSubmit = (data: FormData) => {
-    console.log('Form submitted:', data);
-    setIsSubmitted(true);
-    reset();
-    setTimeout(() => {
-      setIsSubmitted(false);
+  const BOT_TOKEN: string | undefined = import.meta.env.VITE_TELEGRAM_BOT_TOKEN as string;
+  const CHAT_ID: string | undefined = import.meta.env.VITE_TELEGRAM_BOT_CHAT_ID as string;
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      if (!BOT_TOKEN || !CHAT_ID) {
+        throw new Error('Telegram bot token or chat ID is missing');
+      }
+
+      const text = `🌟 *Новый отзыв* 🌟\n\n👤 Имя: ${data.name}\n📧 Email: ${data.email}\n💬 Сообщение: ${data.message}\n\n📅 Отправлено: ${new Date().toLocaleString('ru-RU')}`;
+      const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`;
+
+      const response = await fetch(url, {
+        method: 'GET',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message to Telegram');
+      }
+
+      setIsSubmitted(true);
+      reset();
+      setTimeout(() => {
+        setIsSubmitted(false);
+        onClose();
+      }, 3000);
+    } catch (err) {
+      setError(t('feedback.error') || (err instanceof Error ? err.message : 'Unknown error'));
+      setTimeout(() => setError(null), 3000);
+    }
+  };
+
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
       onClose();
-    }, 3000);
+    }
   };
 
   return (
@@ -43,7 +79,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) =
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={(e) => e.target === e.currentTarget && onClose()}
+          onClick={handleBackdropClick}
         >
           <motion.div
             className="relative bg-gray-100 dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-auto p-6"
@@ -56,7 +92,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) =
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
               aria-label={t('feedback.close')}
             >
-              <Close/>
+              <Close />
             </button>
 
             <h3 className="text-2xl font-bold mb-6 text-primary dark:text-primary-dark">
@@ -71,6 +107,14 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) =
               >
                 {t('feedback.success')}
               </motion.div>
+            ) : error ? (
+              <motion.div
+                className="mb-4 p-4 bg-red-500 dark:bg-red-600 text-white rounded-md text-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                {error}
+              </motion.div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
@@ -83,7 +127,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) =
                     className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-dark text-gray-900 dark:text-gray-100"
                   />
                   {errors.name && (
-                    <motion.span 
+                    <motion.span
                       className="text-red-500 dark:text-red-400 text-sm"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -110,7 +154,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) =
                     className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-dark text-gray-900 dark:text-gray-100"
                   />
                   {errors.email && (
-                    <motion.span 
+                    <motion.span
                       className="text-red-500 dark:text-red-400 text-sm"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -128,15 +172,15 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) =
                     {...register('message', {
                       required: t('feedback.required'),
                       minLength: {
-                        value: 10,
-                        message: t('feedback.minLength', { count: 10 }),
+                        value: 5,
+                        message: t('feedback.minLength', { count: 5 }),
                       },
                     })}
                     placeholder={t('feedback.messagePlaceholder')}
                     className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-dark text-gray-900 dark:text-gray-100 min-h-[100px]"
                   />
                   {errors.message && (
-                    <motion.span 
+                    <motion.span
                       className="text-red-500 dark:text-red-400 text-sm"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}

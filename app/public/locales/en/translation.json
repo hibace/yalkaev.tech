@@ -85,6 +85,7 @@
     "invalidEmail": "Invalid email address",
     "minLength": "Minimum {{count}} characters required",
     "showForm": "Feedback form",
-    "hideForm": "Hide form"
+    "hideForm": "Hide form",
+    "error": "An error occurred while sending the message. Please try again later."
   }
 }
