@@ -104,7 +104,7 @@ const Contact: React.FC = () => {
 
               {activeTooltip === contact.id && (
                 <motion.div
-                  className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs bg-gray-800 dark:bg-gray-700 text-white rounded whitespace-nowrap"
+                  className="absolute bottom-full  transform -translate-x-1/2 px-2 py-1 text-xs bg-gray-800 dark:bg-gray-700 text-white rounded whitespace-nowrap"
                   initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 5 }}
