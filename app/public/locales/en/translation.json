@@ -11,8 +11,8 @@
   "responsibilities": "Responsibilities",
   "skills": "Skills",
   "downloadResume": "Download CV",
-  "experience.careerCompass.period": "January 2025 — Present",
-  "experience.careerCompass.duration": "",
+  "experience.careerCompass.period": "January 2025 — March 2025",
+  "experience.careerCompass.duration": "3 months",
   "experience.careerCompass.company": "LLC \"Career Compass\"",
   "experience.careerCompass.location": "Naberezhnye Chelny, tams-cc.ru",
   "experience.careerCompass.position": "Lead Developer",
@@ -29,7 +29,7 @@
   "experience.qvant.duration": "3 years 10 months",
   "experience.qvant.company": "Qvant (Avant)",
   "experience.qvant.location": "qvant.com",
-  "experience.qvant.position": "Senior Full Stack Developer",
+  "experience.qvant.position": "Senior Fullstack Developer",
   "experience.qvant.highlights.1": "Led a team of developers for 5 complex products with iterative successful production delivery",
   "experience.qvant.highlights.2": "Designed and developed the \"Equipment Database\" module using .NET 8, Vue 3, PrimeVue, Pinia, and minIO",
   "experience.qvant.highlights.3": "Developed the \"General and Role-Based Access\" module, integrated into the product",
@@ -84,7 +84,7 @@
     "required": "This field is required",
     "invalidEmail": "Invalid email address",
     "minLength": "Minimum {{count}} characters required",
-    "showForm": "Feedback form",
+    "showForm": "Feedback",
     "hideForm": "Hide form",
     "error": "An error occurred while sending the message. Please try again later."
   }

@@ -16,6 +16,9 @@ module.exports = {
         sans: ['Poppins', 'sans-serif'], 
         montserrat: ['Montserrat', 'sans-serif'], 
       },
+      screens: {
+        'xs': '400px',
+      },
     },
   },
   plugins: [],

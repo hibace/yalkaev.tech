@@ -42,7 +42,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) =
         throw new Error('Telegram bot token or chat ID is missing');
       }
 
-      const text = `🌟 *Новый отзыв* 🌟\n\n👤 Имя: ${data.name}\n📧 Email: ${data.email}\n💬 Сообщение: ${data.message}\n\n📅 Отправлено: ${new Date().toLocaleString('ru-RU')}`;
+      const text = `🌟 *Обратная связь* 🌟\n\n👤 Имя: ${data.name}\n📧 Email: ${data.email}\n💬 Сообщение: ${data.message}\n\n📅 Отправлено: ${new Date().toLocaleString('ru-RU')}`;
       const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`;
 
       const response = await fetch(url, {
@@ -60,7 +60,8 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) =
         onClose();
       }, 3000);
     } catch (err) {
-      setError(t('feedback.error') || (err instanceof Error ? err.message : 'Unknown error'));
+      const error = t('feedback.error') || (err instanceof Error ? err.message : 'Unknown error');
+      setError(error);
       setTimeout(() => setError(null), 3000);
     }
   };

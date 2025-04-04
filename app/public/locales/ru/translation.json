@@ -11,8 +11,8 @@
   "responsibilities": "Обязанности",
   "skills": "Навыки",
   "downloadResume": "Скачать резюме",
-  "experience.careerCompass.period": "Январь 2025 — настоящее время",
-  "experience.careerCompass.duration": "",
+  "experience.careerCompass.period": "Январь 2025 — Март 2025",
+  "experience.careerCompass.duration": "3 месяца",
   "experience.careerCompass.company": "ООО «Карьерный компас»",
   "experience.careerCompass.location": "Набережные Челны, tams-cc.ru",
   "experience.careerCompass.position": "Ведущий разработчик",
@@ -29,7 +29,7 @@
   "experience.qvant.duration": "3 года 10 месяцев",
   "experience.qvant.company": "Qvant (Avant)",
   "experience.qvant.location": "qvant.com",
-  "experience.qvant.position": "Senior Full Stack Developer",
+  "experience.qvant.position": "Senior Fullstack Developer",
   "experience.qvant.highlights.1": "Лидил команду разработчиков для 5 сложных продуктов с итерационной успешной поставкой продукта в прод",
   "experience.qvant.highlights.2": "Проектировал и разрабатывал модуль «База оборудования» на технологическом стеке .NET 8, Vue 3, PrimeVue, Pinia, minIO",
   "experience.qvant.highlights.3": "Разработал модуль «Общий и ролевой доступ», интегрированный в продукт",
@@ -84,7 +84,7 @@
     "required": "Обязательное поле",
     "invalidEmail": "Некорректный email",
     "minLength": "Минимум {{count}} символов",
-    "showForm": "Связаться со мной",
+    "showForm": "Связь",
     "hideForm": "Скрыть форму обратной связи",
     "error": "Ошибка отправки сообщения. Пожалуйста, попробуйте позже."
   }

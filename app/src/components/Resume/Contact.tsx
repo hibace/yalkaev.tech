@@ -4,6 +4,7 @@ import { Telegram, Mail, GitHub, Message } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { sectionVariants, itemVariants } from '../../animations/variants';
 import { FeedbackForm } from '../FeedbackForm';
+
 const Contact: React.FC = () => {
   const { t } = useTranslation();
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -20,6 +21,7 @@ const Contact: React.FC = () => {
       icon: <Telegram />,
       href: 'https://t.me/yalkaev',
       tooltip: 'Telegram',
+      label: 'Telegram',
       delay: 0,
       external: true
     },
@@ -28,6 +30,7 @@ const Contact: React.FC = () => {
       icon: <Mail />,
       href: 'mailto:yalkaevnikolai@gmail.com',
       tooltip: 'Email',
+      label: 'Email',
       delay: 0.1,
       external: false
     },
@@ -36,6 +39,7 @@ const Contact: React.FC = () => {
       icon: <GitHub />,
       href: 'https://github.com/hibace',
       tooltip: 'GitHub',
+      label: 'GitHub',
       delay: 0.2,
       external: true
     },
@@ -43,6 +47,7 @@ const Contact: React.FC = () => {
       id: 'feedback',
       icon: <Message />,
       tooltip: t('feedback.showForm'),
+      label: t('feedback.showForm'),
       delay: 0.3,
       action: () => setIsFormOpen(true)
     }
@@ -58,11 +63,11 @@ const Contact: React.FC = () => {
         animate="visible"
         transition={{ delay: 0.2 }}
       >
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+        <div className="flex flex-col xs:flex-row justify-center items-center gap-6">
           {contacts.map((contact) => (
             <motion.div
               key={contact.id}
-              className="relative"
+              className="relative flex flex-col items-center"
               variants={itemVariants}
               initial="hidden"
               animate="visible"
@@ -72,24 +77,28 @@ const Contact: React.FC = () => {
               {contact.action ? (
                 <motion.button
                   onClick={contact.action}
-                  className="flex items-center text-primary dark:text-primary-dark hover:text-accent-dark dark:hover:text-accent-dark transition-colors text-base"
+                  className="flex flex-col items-center text-primary dark:text-primary-dark hover:text-accent-dark dark:hover:text-accent-dark transition-colors text-base"
                   onMouseEnter={() => setActiveTooltip(contact.id)}
                   onMouseLeave={() => setActiveTooltip(null)}
                 >
-                  {contact.icon}
-                  <span className="sr-only">{contact.tooltip}</span>
+                  <div className="p-2">
+                    {contact.icon}
+                  </div>
+                  <span className="text-xs mt-1">{contact.label}</span>
                 </motion.button>
               ) : (
                 <motion.a
                   href={contact.href}
                   target={contact.external ? "_blank" : undefined}
                   rel={contact.external ? "noopener noreferrer" : undefined}
-                  className="flex items-center text-primary dark:text-primary-dark hover:text-accent-dark dark:hover:text-accent-dark transition-colors text-base"
+                  className="flex flex-col items-center text-primary dark:text-primary-dark hover:text-accent-dark dark:hover:text-accent-dark transition-colors text-base"
                   onMouseEnter={() => setActiveTooltip(contact.id)}
                   onMouseLeave={() => setActiveTooltip(null)}
                 >
-                  {contact.icon}
-                  <span className="sr-only">{contact.tooltip}</span>
+                  <div className="p-2">
+                    {contact.icon}
+                  </div>
+                  <span className="text-xs mt-1">{contact.label}</span>
                 </motion.a>
               )}
 
