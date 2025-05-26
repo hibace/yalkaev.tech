@@ -27,7 +27,7 @@ const Experience: React.FC = () => {
       variants={sectionVariants}
       initial="hidden"
       animate="visible"
-      transition={{ delay: 0.6 }}
+      transition={{ delay: 0.5 }}
     >
       <div className="flex items-center justify-between mb-6">
         <motion.h2
